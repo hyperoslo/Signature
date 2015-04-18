@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		146D72B31AB782920058798C /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D72B21AB782920058798C /* Tests.m */; };
+		148B6C8C1AE3259000786FC5 /* HYPSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B6C8B1AE3259000786FC5 /* HYPSignatureView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		146D72B21AB782920058798C /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		148B6C8A1AE3259000786FC5 /* HYPSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPSignatureView.h; sourceTree = "<group>"; };
+		148B6C8B1AE3259000786FC5 /* HYPSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPSignatureView.m; sourceTree = "<group>"; };
 		14C136511AB784B200B7B07A /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		14C136521AB784B200B7B07A /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C136541AB784B200B7B07A /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
 		14C136551AB784B200B7B07A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		14C1365C1AB784BC00B7B07A /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +83,8 @@
 		14C1365B1AB784BC00B7B07A /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				14C1365C1AB784BC00B7B07A /* .gitkeep */,
+				148B6C8A1AE3259000786FC5 /* HYPSignatureView.h */,
+				148B6C8B1AE3259000786FC5 /* HYPSignatureView.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				146D72B31AB782920058798C /* Tests.m in Sources */,
+				148B6C8C1AE3259000786FC5 /* HYPSignatureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
