@@ -7,16 +7,4 @@
 
 @implementation Tests
 
-- (void)testPassingExample
-{
-    NSArray *array;
-    XCTAssertNil(array);
-}
-
-- (void)testFailingExample
-{
-    NSArray *array;
-    XCTAssertNotNil(array);
-}
-
 @end

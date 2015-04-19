@@ -3,10 +3,10 @@
 
 @interface HYPSignatureView : GLKView
 
-@property (assign, nonatomic) UIColor *strokeColor;
-@property (assign, nonatomic) BOOL hasSignature;
-@property (strong, nonatomic) UIImage *signatureImage;
+@property (nonatomic) UIColor *strokeColor;
+@property (nonatomic, readonly) BOOL hasSignature;
 
 - (void)erase;
+- (UIImage *)signatureImage;
 
 @end
