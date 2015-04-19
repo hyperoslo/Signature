@@ -10,7 +10,7 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         self.view.userInteractionEnabled = true
 
-        signatureView = HYPSignatureView(frame: self.view.frame)
+        signatureView = HYPSignatureView(frame: self.view.frame, context: nil)
         self.view.addSubview(signatureView!)
     }
 }
