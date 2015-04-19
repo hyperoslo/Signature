@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1417EAEA1AE3EE34001F5568 /* HYPSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B6C8B1AE3259000786FC5 /* HYPSignatureView.m */; };
 		146D72B31AB782920058798C /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D72B21AB782920058798C /* Tests.m */; };
 		147BC5BF1AE3ED0500E89647 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BC5BE1AE3ED0500E89647 /* AppDelegate.swift */; };
 		147BC5C11AE3ED0500E89647 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BC5C01AE3ED0500E89647 /* ViewController.swift */; };
@@ -233,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1417EAEA1AE3EE34001F5568 /* HYPSignatureView.m in Sources */,
 				147BC5C11AE3ED0500E89647 /* ViewController.swift in Sources */,
 				147BC5BF1AE3ED0500E89647 /* AppDelegate.swift in Sources */,
 			);
@@ -410,6 +412,7 @@
 				147BC5D71AE3ED0500E89647 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
