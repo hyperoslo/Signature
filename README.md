@@ -25,6 +25,10 @@ pod 'Signature'
 
 Hyper Interaktiv AS, ios@hyper.no
 
+## Attribution
+
+This is a fork from [PPSSignatureView](https://github.com/jharwig/PPSSignatureView).
+
 ## License
 
 **Signature** is available under the MIT license. See the LICENSE file for more info.
