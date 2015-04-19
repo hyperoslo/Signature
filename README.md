@@ -1,4 +1,4 @@
-# Signature
+![Signature](https://raw.githubusercontent.com/hyperoslo/Signature/master/Assets/cover.png)
 
 [![CI Status](http://img.shields.io/travis/hyperoslo/Signature.svg?style=flat)](https://travis-ci.org/hyperoslo/Signature)
 [![Version](https://img.shields.io/cocoapods/v/Signature.svg?style=flat)](http://cocoadocs.org/docsets/Signature)
