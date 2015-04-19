@@ -8,7 +8,8 @@
 ## Usage
 
 ```objc
-<API>
+let signatureView = HYPSignatureView(frame: self.view.frame, context: nil)
+self.view.addSubview(signatureView)
 ```
 
 ## Installation
