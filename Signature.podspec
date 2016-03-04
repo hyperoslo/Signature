@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "Signature"
   s.summary          = "UIView with signature support"
-  s.version          = "0.1.1"
+  s.version          = "0.2.0"
   s.homepage         = "https://github.com/hyperoslo/Signature"
   s.license          = 'MIT'
   s.author           = { "Hyper Interaktiv AS" => "ios@hyper.no" }
