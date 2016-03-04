@@ -309,7 +309,7 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
 
 - (void)pan:(UIPanGestureRecognizer *)pan {
     
-    __autoreleasing NSError *error;
+    __autoreleasing NSError *error = nil;
     GLuint *mappedBuffer = mapVertexBuffer(vertexBuffer, &error);
     
     if (mappedBuffer == NULL) {
