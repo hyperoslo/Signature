@@ -113,8 +113,8 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
 
 @implementation HYPSignatureView
 
-- (id)initWithFrame:(CGRect)frame context:(EAGLContext *)ctx {
-    self = [super initWithFrame:frame context:ctx];
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (!self) return nil;
 
     context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
