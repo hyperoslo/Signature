@@ -394,6 +394,7 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
         }
     }
 
+    unmapVertexBuffer(mappedBuffer);
     [self setNeedsDisplay];
 }
 
