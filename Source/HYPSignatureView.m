@@ -38,7 +38,7 @@ static inline GLvoid *mapVertexBuffer(GLuint bufferToMap, NSError **error) {
         NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
         userInfo[@"GL_ERROR"] = @(glError);
 
-        *error = [[NSError alloc] initWithDomain:NSStringFromClass(HYPSignatureView.class) code:ERROR_OPENGL userInfo:userInfo];
+        *error = [NSError errorWithDomain:NSStringFromClass(HYPSignatureView.class) code:ERROR_OPENGL userInfo:userInfo];
     }
 
     return data;
