@@ -115,13 +115,24 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
 @implementation HYPSignatureView
 
 - (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (!self) return nil;
+    if ((self = [super initWithFrame:frame])) {
+        [self setup];
+    }
+    
+    return self;
+}
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super initWithCoder:aDecoder])) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup {
     context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     if (!context) {
         [NSException raise:@"NSOpenGLES2ContextException" format:@"Failed to create OpenGL ES2 context"];
-        return nil;
     }
 
     time(NULL);
@@ -141,7 +152,7 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
     self.drawableMultisample = GLKViewDrawableMultisample4X;
 
     [self setupGL];
-
+    
     // Capture touches
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     pan.maximumNumberOfTouches = pan.minimumNumberOfTouches = 1;
@@ -157,8 +168,6 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
     UILongPressGestureRecognizer *longer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     longer.cancelsTouchesInView = YES;
     [self addGestureRecognizer:longer];
-
-    return self;
 }
 
 
