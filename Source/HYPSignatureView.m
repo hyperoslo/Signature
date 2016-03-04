@@ -309,11 +309,11 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
 
 - (void)pan:(UIPanGestureRecognizer *)pan {
     
-    NSError *error;
+    __autoreleasing NSError *error;
     GLuint *mappedBuffer = mapVertexBuffer(vertexBuffer, &error);
     
     if (mappedBuffer == NULL) {
-        // TODO(rgrimm): Handle the error condition
+        // TODO: Handle the error condition
     } else {
         
         CGPoint velocity = [pan velocityInView:self];
