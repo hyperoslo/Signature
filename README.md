@@ -8,7 +8,7 @@
 ## Usage
 
 ```swift
-let signatureView = HYPSignatureView(frame: self.view.frame, context: nil)
+let signatureView = HYPSignatureView(frame: self.view.frame)
 self.view.addSubview(signatureView)
 ```
 
