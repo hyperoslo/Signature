@@ -2,10 +2,11 @@
 
 #import <OpenGLES/ES2/glext.h>
 
+CGFloat const kHYPSignatureDefaultStrokeWidthMin = 0.002f;
+CGFloat const kHYPSignatureDefaultStrokeWidthMax = 0.010f;
+
 #define MAXIMUM_VERTECES 100000
 #define QUADRATIC_DISTANCE_TOLERANCE 3.0 // Minimum distance to make a curve
-#define STROKE_WIDTH_MAX 0.010
-#define STROKE_WIDTH_MIN 0.002 // Stroke width determined by touch velocity
 #define STROKE_WIDTH_SMOOTHING 0.5 // Low pass filter alpha
 #define VELOCITY_CLAMP_MAX 5000
 #define VELOCITY_CLAMP_MIN 20
@@ -125,6 +126,7 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
 
     time(NULL);
 
+    //Defaults
     self.backgroundColor = [UIColor whiteColor];
     self.opaque = NO;
 
@@ -132,6 +134,9 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
     self.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     self.enableSetNeedsDisplay = YES;
 
+    self.strokeWidthMin = kHYPSignatureDefaultStrokeWidthMin;
+    self.strokeWidthMax = kHYPSignatureDefaultStrokeWidthMax;
+    
     // Turn on antialiasing
     self.drawableMultisample = GLKViewDrawableMultisample4X;
 
@@ -186,6 +191,19 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
     }
 }
 
+#pragma mark - Accessors
+
+- (void)setStrokeWidthMin:(CGFloat)strokeWidthMin
+{
+    _strokeWidthMin = MAX(strokeWidthMin, 0.0f);
+}
+
+- (void)setStrokeWidthMax:(CGFloat)strokeWidthMax
+{
+    _strokeWidthMax = MAX(strokeWidthMax, 0.0f);
+}
+
+#pragma mark - Implementation
 
 - (void)erase {
     length = 0;
@@ -266,7 +284,7 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
     float normalizedVelocity = (clampedVelocityMagnitude - VELOCITY_CLAMP_MIN) / (VELOCITY_CLAMP_MAX - VELOCITY_CLAMP_MIN);
 
     float lowPassFilterAlpha = STROKE_WIDTH_SMOOTHING;
-    float newThickness = (STROKE_WIDTH_MAX - STROKE_WIDTH_MIN) * (1 - normalizedVelocity) + STROKE_WIDTH_MIN;
+    float newThickness = (self.strokeWidthMax - self.strokeWidthMin) * (1 - normalizedVelocity) + self.strokeWidthMin;
     penThickness = penThickness * lowPassFilterAlpha + newThickness * (1 - lowPassFilterAlpha);
 
     if ([pan state] == UIGestureRecognizerStateBegan) {
