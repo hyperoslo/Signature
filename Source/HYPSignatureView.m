@@ -165,7 +165,7 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
     time(NULL);
     
     //Defaults
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];
     self.opaque = NO;
     
     self.context = context;
