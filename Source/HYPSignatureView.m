@@ -116,46 +116,55 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (!self) return nil;
+    
+    [self initialize];
+    return self;
+}
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (!self) return nil;
+    
+    [self initialize];
+    return self;
+}
+
+- (void)initialize {
     context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     if (!context) {
         [NSException raise:@"NSOpenGLES2ContextException" format:@"Failed to create OpenGL ES2 context"];
-        return nil;
     }
-
+    
     time(NULL);
-
+    
     self.backgroundColor = [UIColor whiteColor];
     self.opaque = NO;
-
+    
     self.context = context;
     self.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     self.enableSetNeedsDisplay = YES;
-
+    
     // Turn on antialiasing
     self.drawableMultisample = GLKViewDrawableMultisample4X;
-
+    
     [self setupGL];
-
+    
     // Capture touches
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     pan.maximumNumberOfTouches = pan.minimumNumberOfTouches = 1;
     pan.cancelsTouchesInView = YES;
     [self addGestureRecognizer:pan];
-
+    
     // For dotting your i's
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
     tap.cancelsTouchesInView = YES;
     [self addGestureRecognizer:tap];
-
+    
     // Erase with long press
     UILongPressGestureRecognizer *longer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     longer.cancelsTouchesInView = YES;
     [self addGestureRecognizer:longer];
-
-    return self;
 }
-
 
 - (void)dealloc {
     [self tearDownGL];
