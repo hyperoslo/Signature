@@ -315,8 +315,8 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
     
     if (mappedBuffer == NULL) {
         // TODO: Handle the error condition
-    } else {
-        
+    }
+	else {
         CGPoint velocity = [pan velocityInView:self];
         CGPoint location = [pan locationInView:self];
         
@@ -333,65 +333,80 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
         float lowPassFilterAlpha = STROKE_WIDTH_SMOOTHING;
         float newThickness = (self.strokeWidthMax - self.strokeWidthMin) * (1 - normalizedVelocity) + self.strokeWidthMin;
         penThickness = penThickness * lowPassFilterAlpha + newThickness * (1 - lowPassFilterAlpha);
-        
-        if ([pan state] == UIGestureRecognizerStateBegan) {
-            
-            previousPoint = location;
-            previousMidPoint = location;
-            
-            HYPSignaturePoint startPoint = ViewPointToGL(location, self.bounds, (GLKVector3){1, 1, 1});
-            previousVertex = startPoint;
-            previousThickness = penThickness;
-            
-            addVertex(mappedBuffer, &length, startPoint);
-            addVertex(mappedBuffer, &length, previousVertex);
-            
-            self.hasSignature = YES;
-            
-        } else if ([pan state] == UIGestureRecognizerStateChanged) {
-            
-            CGPoint mid = CGPointMake((location.x + previousPoint.x) / 2.0, (location.y + previousPoint.y) / 2.0);
-            
-            if (distance > QUADRATIC_DISTANCE_TOLERANCE) {
-                // Plot quadratic bezier instead of line
-                unsigned int i;
-                
-                int segments = (int) distance / 1.5;
-                
-                float startPenThickness = previousThickness;
-                float endPenThickness = penThickness;
-                previousThickness = penThickness;
-                
-                for (i = 0; i < segments; i++) {
-                    penThickness = startPenThickness + ((endPenThickness - startPenThickness) / segments) * i;
-                    
-                    CGPoint quadPoint = QuadraticPointInCurve(previousMidPoint, mid, previousPoint, (float)i / (float)(segments));
-                    
-                    HYPSignaturePoint vertex = ViewPointToGL(quadPoint, self.bounds, StrokeColor);
-                    [self addTriangleStripPointsInMappedBuffer:mappedBuffer previous:previousVertex next:vertex];
-                    
-                    previousVertex = vertex;
-                }
-            } else if (distance > 1.0) {
-                
-                HYPSignaturePoint vertex = ViewPointToGL(location, self.bounds, StrokeColor);
-                [self addTriangleStripPointsInMappedBuffer:mappedBuffer previous:previousVertex next:vertex];
-                
-                previousVertex = vertex;
-                previousThickness = penThickness;
-            }
-            
-            previousPoint = location;
-            previousMidPoint = mid;
-            
-        } else if (pan.state == UIGestureRecognizerStateEnded | pan.state == UIGestureRecognizerStateCancelled) {
-            
-            HYPSignaturePoint vertex = ViewPointToGL(location, self.bounds, (GLKVector3){1, 1, 1});
-            addVertex(mappedBuffer, &length, vertex);
-            
-            previousVertex = vertex;
-            addVertex(mappedBuffer, &length, previousVertex);
-        }
+		
+		switch (pan.state) {
+			case UIGestureRecognizerStatePossible: {
+				// Do nothing
+				break;
+			}
+			case UIGestureRecognizerStateBegan: {
+				previousPoint = location;
+				previousMidPoint = location;
+				
+				HYPSignaturePoint startPoint = ViewPointToGL(location, self.bounds, (GLKVector3){1, 1, 1});
+				previousVertex = startPoint;
+				previousThickness = penThickness;
+				
+				addVertex(mappedBuffer, &length, startPoint);
+				addVertex(mappedBuffer, &length, previousVertex);
+				
+				self.hasSignature = YES;
+				break;
+			}
+			case UIGestureRecognizerStateChanged: {
+				CGPoint mid = CGPointMake((location.x + previousPoint.x) / 2.0f, (location.y + previousPoint.y) / 2.0f);
+				
+				if (distance > QUADRATIC_DISTANCE_TOLERANCE) {
+					// Plot quadratic bezier instead of line
+					
+					int segments = (int) distance / 1.5f;
+					
+					float startPenThickness = previousThickness;
+					float endPenThickness = penThickness;
+					previousThickness = penThickness;
+					
+					for (unsigned int i = 0; i < segments; ++i) {
+						penThickness = startPenThickness + ((endPenThickness - startPenThickness) / segments) * i;
+						
+						CGPoint quadPoint = QuadraticPointInCurve(previousMidPoint, mid, previousPoint, (float)i / (float)(segments));
+						
+						HYPSignaturePoint vertex = ViewPointToGL(quadPoint, self.bounds, StrokeColor);
+						[self addTriangleStripPointsInMappedBuffer:mappedBuffer previous:previousVertex next:vertex];
+						
+						previousVertex = vertex;
+					}
+				}
+				else if (distance > 1.0f) {
+					HYPSignaturePoint vertex = ViewPointToGL(location, self.bounds, StrokeColor);
+					[self addTriangleStripPointsInMappedBuffer:mappedBuffer previous:previousVertex next:vertex];
+					
+					previousVertex = vertex;
+					previousThickness = penThickness;
+				}
+				
+				previousPoint = location;
+				previousMidPoint = mid;
+				break;
+			}
+			case UIGestureRecognizerStateEnded:
+				// Fall through
+			case UIGestureRecognizerStateCancelled: {
+				HYPSignaturePoint vertex = ViewPointToGL(location, self.bounds, (GLKVector3){1, 1, 1});
+				addVertex(mappedBuffer, &length, vertex);
+				
+				previousVertex = vertex;
+				addVertex(mappedBuffer, &length, previousVertex);
+				break;
+			}
+			case UIGestureRecognizerStateFailed: {
+				// Do nothing
+				break;
+			}
+			default: {
+				// Do nothing
+				break;
+			}
+		}
     }
     
     unmapVertexBuffer(mappedBuffer);
