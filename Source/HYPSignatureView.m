@@ -302,9 +302,10 @@ static HYPSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
     [self setNeedsDisplay];
 }
 
-
 - (void)longPress:(UILongPressGestureRecognizer *)longPress {
-    [self erase];
+	if (self.eraseOnLongPress) {
+		[self erase];
+	}
 }
 
 - (void)pan:(UIPanGestureRecognizer *)pan {

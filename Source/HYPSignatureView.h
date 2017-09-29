@@ -29,6 +29,8 @@ extern CGFloat const kHYPSignatureDefaultStrokeWidthMax;
 
 @property (nonatomic, readonly) BOOL hasSignature;
 
+@property (nonatomic, assign) BOOL eraseOnLongPress;
+
 - (void)erase;
 - (UIImage *)signatureImage;
 
