@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQa-1S-92H" customClass="GRKSignatureView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="599"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SLy-s3-9gb">
+                                <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRW-jL-az0">
+                                        <rect key="frame" x="319" y="9" width="36" height="30"/>
+                                        <state key="normal" title="Clear"/>
+                                        <connections>
+                                            <action selector="clearAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MYd-1C-jKS"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clear on Long-press" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9X-pG-YqO">
+                                        <rect key="frame" x="20" y="13" width="156" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X6S-3g-Rle">
+                                        <rect key="frame" x="184" y="8" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="longPressValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="eMk-kD-ZJG"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" white="0.94722443200923778" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="dRW-jL-az0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SLy-s3-9gb" secondAttribute="leading" constant="20" symbolic="YES" id="6Xc-Me-Fov"/>
+                                    <constraint firstItem="X6S-3g-Rle" firstAttribute="top" secondItem="SLy-s3-9gb" secondAttribute="top" constant="8" id="HRG-kM-ApW"/>
+                                    <constraint firstItem="dRW-jL-az0" firstAttribute="centerY" secondItem="X6S-3g-Rle" secondAttribute="centerY" id="IqP-tb-dKQ"/>
+                                    <constraint firstItem="V9X-pG-YqO" firstAttribute="leading" secondItem="SLy-s3-9gb" secondAttribute="leading" constant="20" symbolic="YES" id="Oer-2B-ULJ"/>
+                                    <constraint firstItem="V9X-pG-YqO" firstAttribute="centerY" secondItem="X6S-3g-Rle" secondAttribute="centerY" id="QNH-mm-HTq"/>
+                                    <constraint firstItem="X6S-3g-Rle" firstAttribute="centerY" secondItem="SLy-s3-9gb" secondAttribute="centerY" id="TNp-XW-cof"/>
+                                    <constraint firstItem="X6S-3g-Rle" firstAttribute="leading" secondItem="V9X-pG-YqO" secondAttribute="trailing" constant="8" id="UCN-oi-get"/>
+                                    <constraint firstAttribute="trailing" secondItem="dRW-jL-az0" secondAttribute="trailing" constant="20" symbolic="YES" id="wQa-Uk-05T"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yQa-1S-92H" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AH2-Gr-F13"/>
+                            <constraint firstItem="SLy-s3-9gb" firstAttribute="top" secondItem="yQa-1S-92H" secondAttribute="bottom" id="BYU-oe-A1q"/>
+                            <constraint firstItem="SLy-s3-9gb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="F3Y-sS-yjh"/>
+                            <constraint firstItem="SLy-s3-9gb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KRg-iw-7dW"/>
+                            <constraint firstItem="SLy-s3-9gb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Lgh-R3-esI"/>
+                            <constraint firstItem="yQa-1S-92H" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="MGv-yM-WYZ"/>
+                            <constraint firstItem="yQa-1S-92H" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nBv-tA-xJ7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="longPressSwitch" destination="X6S-3g-Rle" id="V3t-5e-FEY"/>
+                        <outlet property="signatureView" destination="yQa-1S-92H" id="vpj-Tm-RgV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
+        </scene>
+    </scenes>
+</document>
